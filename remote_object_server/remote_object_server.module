@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * Provides the remote server
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function remote_object_server_menu() {
+  $items = array();
+  $items['remote-object-server'] = array(
+    'title' => '',
+    'description' => '',
+    'page callback' => 'remote_object_server_service',
+    'type' => NORMAL_MENU_ITEM,
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * A simple page callback that uses provides the remoting service.
+ */
+function remote_object_server_service() {
+  // Check username and password.
+  // TODO this is busted, see below re: amp;...
+  if (isset($_POST['username']) && isset($_POST['password'])) {
+    if (!($user = user_load(array('name' => $_POST['username'] && $user->pass = md5($_POST['password']))))) {
+      return FALSE;
+    }
+  }
+  // Verify that we have valid looking data.
+  // TODO: what's with the amp;?
+  if (!isset($_POST['amp;remote_object_data']) || !($data = unserialize($_POST['amp;remote_object_data']))) {
+    print_r($_POST);
+    return NULL;
+  }
+  else {
+    // Initialize our proxy server class.
+    $server = new remoteObjectServer;
+    // Execute the remote command
+    print base64_encode(serialize($server->remoteExecute($data)));
+    return NULL;
+  }
+}

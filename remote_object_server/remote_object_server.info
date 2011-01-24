@@ -1,0 +1,5 @@
+name = Remote Object Server
+description = Remote Object Server provides the server class and utility functions necessary to allow rerouting of object operations from one Drupal instance to another.  <strong>Note: This module is <em>highly</em> insecure and you should think long and hard before installing it on even a dev system.  This is a proof of concept <em>ONLY!</em><strong>
+core = 6.x
+dependencies[] = autoload
+files[]=remote_object_server.inc

@@ -1,0 +1,6 @@
+name = Remote Object Client
+description = Remote Object Client provides the client class and utility functions necessary to allow rerouting of object operations from one Drupal instance to another.  Note 
+core = 6.x
+dependencies[] = autoload
+files[]=remote_object_client.inc
+files[]=glip__proxy.class.inc

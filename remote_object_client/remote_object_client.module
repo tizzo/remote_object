@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ *   TODO: description
+ */
+
+/**
+ * @param (string) $class_name
+ *
+ * @param (array) $args
+ *   An array of args to be passed to the constructor method on the destination object.
+ *
+ * @return (remoteProxyClass)
+ *   A remote proxy object.
+ */
+function remote_object_client_get_proxy($class_name, array $args = array()) {
+  $class_name = $class_name . '__proxy';
+  $reflectionObject = new ReflectionClass($class_name);
+  global $conf;
+  $credentials['remoteURL'] = $conf['remote_object_client'][$class_name]['url'];
+  $credentials['remoteUsername'] = $conf['remote_object_client'][$class_name]['username'];
+  $credentials['remotePassword'] = $conf['remote_object_client'][$class_name]['password'];
+  $object = $reflectionObject->newInstanceArgs(array($credentials, $args));
+  return $object;
+}
