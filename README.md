@@ -17,4 +17,4 @@ When the client module's factory method is used to retrieve an object from a rem
 
 ## Usage ##
 
-Don't.  It was written as a proof of concept and never intended to actual use.
+Don't.  It was written as a proof of concept and never intended for actual use.
